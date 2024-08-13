@@ -1,0 +1,97 @@
+{
+  "forms": [
+    {
+      "id": "form_001",
+      "form_name": "General Health Anamnesis",
+      "description": "This form collects general health information from the patient.",
+      "created_at": "2024-08-14",
+      "updated_at": "2024-08-14",
+      "sections": [
+        {
+          "id": "section_001",
+          "section_name": "Personal Information",
+          "description": "Basic personal details of the patient.",
+          "questions": [
+            {
+              "id": "question_001",
+              "question_type": "text",
+              "label": "Full Name",
+              "placeholder": "Enter your full name",
+              "required": true
+            },
+            {
+              "id": "question_002",
+              "question_type": "date",
+              "label": "Date of Birth",
+              "placeholder": "Select your date of birth",
+              "required": true
+            },
+            {
+              "id": "question_003",
+              "question_type": "radio",
+              "label": "Gender",
+              "options": ["Male", "Female", "Other"],
+              "required": true
+            }
+          ]
+        },
+        {
+          "id": "section_002",
+          "section_name": "Medical History",
+          "description": "Information about the patient's past medical history.",
+          "questions": [
+            {
+              "id": "question_004",
+              "question_type": "checkbox",
+              "label": "Have you ever been diagnosed with any chronic diseases?",
+              "options": ["Diabetes", "Hypertension", "Heart Disease", "None"],
+              "required": false
+            },
+            {
+              "id": "question_005",
+              "question_type": "text",
+              "label": "If yes, please specify",
+              "placeholder": "Describe your chronic diseases",
+              "required": false
+            },
+            {
+              "id": "question_006",
+              "question_type": "textarea",
+              "label": "Please describe any past surgeries or major illnesses",
+              "placeholder": "Provide details of past surgeries or illnesses",
+              "required": false
+            }
+          ]
+        },
+        {
+          "id": "section_003",
+          "section_name": "Lifestyle and Habits",
+          "description": "Information about the patient's lifestyle and habits.",
+          "questions": [
+            {
+              "id": "question_007",
+              "question_type": "radio",
+              "label": "Do you smoke?",
+              "options": ["Yes", "No"],
+              "required": true
+            },
+            {
+              "id": "question_008",
+              "question_type": "radio",
+              "label": "Do you consume alcohol?",
+              "options": ["Yes", "No"],
+              "required": true
+            },
+            {
+              "id": "question_009",
+              "question_type": "textarea",
+              "label": "Describe your exercise habits",
+              "placeholder": "Provide details of your exercise routine",
+              "required": false
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

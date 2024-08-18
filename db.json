@@ -4,13 +4,10 @@
       "id": "form_001",
       "form_name": "General Health Anamnesis",
       "description": "This form collects general health information from the patient.",
-      "created_at": "2024-08-14",
-      "updated_at": "2024-08-14",
       "sections": [
         {
           "id": "section_001",
           "section_name": "Personal Information",
-          "description": "Basic personal details of the patient.",
           "questions": [
             {
               "id": "question_001",
@@ -38,60 +35,216 @@
         {
           "id": "section_002",
           "section_name": "Medical History",
-          "description": "Information about the patient's past medical history.",
           "questions": [
             {
               "id": "question_004",
               "question_type": "checkbox",
               "label": "Have you ever been diagnosed with any chronic diseases?",
-              "options": ["Diabetes", "Hypertension", "Heart Disease", "None"],
-              "required": false
+              "options": ["Diabetes", "Hypertension", "Heart Disease", "None"]
             },
             {
               "id": "question_005",
-              "question_type": "text",
-              "label": "If yes, please specify",
-              "placeholder": "Describe your chronic diseases",
-              "required": false
-            },
-            {
-              "id": "question_006",
               "question_type": "textarea",
               "label": "Please describe any past surgeries or major illnesses",
-              "placeholder": "Provide details of past surgeries or illnesses",
-              "required": false
+              "placeholder": "Provide details of past surgeries or illnesses"
+            }
+          ]
+        }
+      ],
+      "created_at": "2024-08-14T10:00:00Z",
+      "updated_at": "2024-08-14T10:00:00Z"
+    },
+    {
+      "id": "form_002",
+      "form_name": "Dental History",
+      "description": "This form collects information about the patient's dental history.",
+      "sections": [
+        {
+          "id": "section_003",
+          "section_name": "Dental Background",
+          "questions": [
+            {
+              "id": "question_006",
+              "question_type": "text",
+              "label": "Last Dental Visit",
+              "placeholder": "Enter the date of your last dental visit",
+              "required": true
+            },
+            {
+              "id": "question_007",
+              "question_type": "checkbox",
+              "label": "Do you experience any of the following?",
+              "options": ["Tooth Pain", "Bleeding Gums", "Sensitivity", "None"]
             }
           ]
         },
         {
-          "id": "section_003",
-          "section_name": "Lifestyle and Habits",
-          "description": "Information about the patient's lifestyle and habits.",
+          "id": "section_004",
+          "section_name": "Oral Hygiene",
           "questions": [
-            {
-              "id": "question_007",
-              "question_type": "radio",
-              "label": "Do you smoke?",
-              "options": ["Yes", "No"],
-              "required": true
-            },
             {
               "id": "question_008",
               "question_type": "radio",
-              "label": "Do you consume alcohol?",
-              "options": ["Yes", "No"],
-              "required": true
+              "label": "How often do you brush your teeth?",
+              "options": ["Once a day", "Twice a day", "More than twice"]
             },
             {
               "id": "question_009",
               "question_type": "textarea",
-              "label": "Describe your exercise habits",
-              "placeholder": "Provide details of your exercise routine",
-              "required": false
+              "label": "Please describe your oral hygiene routine",
+              "placeholder": "Describe your daily oral hygiene practices"
             }
           ]
         }
-      ]
+      ],
+      "created_at": "2024-08-14T10:05:00Z",
+      "updated_at": "2024-08-14T10:05:00Z"
+    },
+    {
+      "id": "form_003",
+      "form_name": "Mental Health Assessment",
+      "description": "This form assesses the patient's mental health status.",
+      "sections": [
+        {
+          "id": "section_005",
+          "section_name": "Mental Wellbeing",
+          "questions": [
+            {
+              "id": "question_010",
+              "question_type": "radio",
+              "label": "Do you feel anxious frequently?",
+              "options": ["Yes", "No"],
+              "required": true
+            },
+            {
+              "id": "question_011",
+              "question_type": "textarea",
+              "label": "Describe any recent changes in your mood",
+              "placeholder": "Include any significant changes in your mood or behavior"
+            }
+          ]
+        },
+        {
+          "id": "section_006",
+          "section_name": "Sleep Patterns",
+          "questions": [
+            {
+              "id": "question_012",
+              "question_type": "text",
+              "label": "Average hours of sleep per night",
+              "placeholder": "Enter the average number of hours you sleep"
+            },
+            {
+              "id": "question_013",
+              "question_type": "radio",
+              "label": "Do you have trouble falling asleep?",
+              "options": ["Often", "Sometimes", "Never"]
+            }
+          ]
+        }
+      ],
+      "created_at": "2024-08-14T10:10:00Z",
+      "updated_at": "2024-08-14T10:10:00Z"
+    },
+    {
+      "id": "form_004",
+      "form_name": "Nutrition and Diet Assessment",
+      "description": "This form gathers information about the patient's dietary habits.",
+      "sections": [
+        {
+          "id": "section_007",
+          "section_name": "Dietary Habits",
+          "questions": [
+            {
+              "id": "question_014",
+              "question_type": "radio",
+              "label": "How many meals do you eat per day?",
+              "options": ["1-2", "3", "More than 3"]
+            },
+            {
+              "id": "question_015",
+              "question_type": "textarea",
+              "label": "Describe your typical daily diet",
+              "placeholder": "Include details of what you eat in a typical day"
+            }
+          ]
+        },
+        {
+          "id": "section_008",
+          "section_name": "Supplements",
+          "questions": [
+            {
+              "id": "question_016",
+              "question_type": "checkbox",
+              "label": "Do you take any dietary supplements?",
+              "options": ["Vitamins", "Minerals", "Herbal Supplements", "None"]
+            },
+            {
+              "id": "question_017",
+              "question_type": "text",
+              "label": "If yes, please list them",
+              "placeholder": "List any dietary supplements you take"
+            }
+          ]
+        }
+      ],
+      "created_at": "2024-08-14T10:15:00Z",
+      "updated_at": "2024-08-14T10:15:00Z"
+    },
+    {
+      "id": "form_005",
+      "form_name": "Physical Activity and Exercise",
+      "description": "This form collects data on the patient's physical activity and exercise routines.",
+      "sections": [
+        {
+          "id": "section_009",
+          "section_name": "Exercise Routine",
+          "questions": [
+            {
+              "id": "question_018",
+              "question_type": "radio",
+              "label": "How often do you exercise?",
+              "options": [
+                "Daily",
+                "3-5 times a week",
+                "1-2 times a week",
+                "Rarely"
+              ]
+            },
+            {
+              "id": "question_019",
+              "question_type": "textarea",
+              "label": "Describe your typical exercise routine",
+              "placeholder": "Include details of the types of exercise you do"
+            }
+          ]
+        },
+        {
+          "id": "section_010",
+          "section_name": "Physical Limitations",
+          "questions": [
+            {
+              "id": "question_020",
+              "question_type": "checkbox",
+              "label": "Do you have any physical limitations?",
+              "options": [
+                "Joint Pain",
+                "Muscle Weakness",
+                "Breathing Issues",
+                "None"
+              ]
+            },
+            {
+              "id": "question_021",
+              "question_type": "textarea",
+              "label": "Please describe any physical limitations",
+              "placeholder": "Include details of any physical issues that limit your exercise"
+            }
+          ]
+        }
+      ],
+      "created_at": "2024-08-14T10:20:00Z",
+      "updated_at": "2024-08-14T10:20:00Z"
     }
   ]
 }

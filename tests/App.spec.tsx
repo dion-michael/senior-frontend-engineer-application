@@ -1,7 +1,7 @@
 import { render, screen } from "@testing-library/react";
 import App from "../src/App";
 
-describe("User", () => {
+describe("App", () => {
   test("renders heading", async () => {
     render(<App />);
     expect(screen.getByRole("heading", { name: "Hello world!" })).toBeInTheDocument();
@@ -9,7 +9,7 @@ describe("User", () => {
 
   test("renders a button", async () => {
     render(<App />);
-    const users = await screen.findAllByRole("button");
-    expect(users).toHaveLength(1);
+    const buttons = await screen.findAllByRole("button");
+    expect(buttons).toHaveLength(1);
   });
 });

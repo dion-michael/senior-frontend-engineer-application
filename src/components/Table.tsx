@@ -27,7 +27,7 @@ interface TableProps<T>
     pageCount: number;
   };
   sorting?: SortingState;
-  setSorting?: OnChangeFn<SortingState>;
+  onSortingChange?: OnChangeFn<SortingState>;
   loading?: boolean;
   onRowDoubleClick?: (data: T) => void;
 }
@@ -38,7 +38,7 @@ const Table = <T,>({
   pagination,
   sorting,
   loading,
-  setSorting,
+  onSortingChange,
   onRowDoubleClick,
   ...props
 }: TableProps<T>) => {
@@ -54,7 +54,7 @@ const Table = <T,>({
     state: {
       sorting
     },
-    onSortingChange: setSorting
+    onSortingChange
   });
 
   return (

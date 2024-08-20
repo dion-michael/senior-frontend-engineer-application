@@ -1,4 +1,4 @@
-import { useMemo, useState } from 'react';
+import { useCallback, useMemo, useState } from 'react';
 import './App.css';
 import {
   ColumnDef,
@@ -7,16 +7,20 @@ import {
 } from '@tanstack/react-table';
 import { formatDate } from './utils/formatDate';
 import Table from './components/Table';
-import { Menu, MenuButton, MenuItem, MenuItems } from '@headlessui/react';
+import {
+  Button,
+  Menu,
+  MenuButton,
+  MenuItem,
+  MenuItems
+} from '@headlessui/react';
 import EllipsisY from './components/icons/EllipsisY';
 import { useFormsData } from './hooks/useFormsData';
 import SearchInput from './components/SearchInput';
 import AppBanner from './components/AppBanner';
 import FullscreenDialog from './components/FullscreenDialog';
-import FormPaper from './components/FormPaper';
-import FormTitle from './components/FormTitle';
-import FormDescription from './components/FormDescription';
-import FormSection from './components/FormSection';
+import AnamnesisForm from './components/AnamnesisForm';
+import Add from './components/icons/Add';
 
 const columnHelper = createColumnHelper<IForm>();
 
@@ -25,9 +29,19 @@ function App() {
   const [open, setOpen] = useState(false);
   const [sorting, setSorting] = useState<SortingState>([]);
   const [query, setQuery] = useState('');
+  const [editing, setIsEditing] = useState(false);
 
-  const { data, loading, nextPage, prevPage, page, limit, pageCount } =
-    useFormsData({ page: 1, limit: 5, sorting, query });
+  const {
+    data,
+    fetchData,
+    loading,
+    nextPage,
+    prevPage,
+    page,
+    limit,
+    pageCount,
+    addForm
+  } = useFormsData({ page: 1, limit: 5, sorting, query });
 
   const openDetail = (form: IForm) => {
     setSelected(form);
@@ -35,7 +49,7 @@ function App() {
   };
 
   const onClose = () => {
-    setSelected(null);
+    // setSelected(null);
     setOpen(false);
   };
 
@@ -112,7 +126,11 @@ function App() {
               <MenuItem>
                 <a
                   className="block data-[focus]:bg-blue-100 p-4 border-b border-b-slate-100"
-                  href="/support"
+                  role="button"
+                  onClick={() => {
+                    setIsEditing(true);
+                    openDetail(props.row.original);
+                  }}
                 >
                   Edit
                 </a>
@@ -132,6 +150,19 @@ function App() {
     ],
     []
   );
+
+  const closeDialogAndRefetch = useCallback(() => {
+    fetchData();
+    setOpen(false);
+    setIsEditing(false);
+  }, [fetchData]);
+
+  const handleAddForm = useCallback(async () => {
+    const response = await addForm();
+    setSelected(response);
+    setIsEditing(true);
+    setOpen(true);
+  }, [addForm]);
 
   return (
     <div className="mx-auto">
@@ -156,17 +187,25 @@ function App() {
           }}
           onRowDoubleClick={(form: IForm) => openDetail(form)}
           sorting={sorting}
-          setSorting={setSorting}
+          onSortingChange={setSorting}
         />
+        <div className="mt-5 flex justify-end">
+          <Button
+            onClick={handleAddForm}
+            className="flex items-center text-lg bg-blue-500 hover:bg-blue-700 active:bg-blue-800 p-4 text-white rounded-lg"
+          >
+            <Add className="mr-2" /> {'Add Form'}
+          </Button>
+        </div>
       </div>
       <FullscreenDialog onClose={onClose} open={open} title={'Form Preview'}>
-        <FormPaper>
-          <FormTitle>{selected?.form_name}</FormTitle>
-          <FormDescription>{selected?.description}</FormDescription>
-          {selected?.sections.map((section) => (
-            <FormSection section={section} />
-          ))}
-        </FormPaper>
+        <AnamnesisForm
+          formId={selected?.id}
+          edit={editing}
+          onEditChange={setIsEditing}
+          onSaved={closeDialogAndRefetch}
+          onDeleted={closeDialogAndRefetch}
+        />
       </FullscreenDialog>
     </div>
   );

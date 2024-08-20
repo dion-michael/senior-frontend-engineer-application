@@ -1,14 +1,25 @@
-import { Field, Label, Textarea as HeadlessTextArea } from '@headlessui/react';
+import {
+  Field,
+  Label,
+  Textarea as HeadlessTextArea,
+  TextareaProps
+} from '@headlessui/react';
 
-type Props = {
+interface Props extends TextareaProps {
   label?: string;
   required?: boolean;
   placeholder?: string;
-};
+}
 
-const TextArea = ({ label, required, placeholder }: Props) => {
+const TextArea = ({
+  label,
+  required,
+  placeholder,
+  className,
+  ...props
+}: Props) => {
   return (
-    <Field className="mb-5">
+    <Field className={`mb-5 ${className}`}>
       <Label className="text-lg text-slate-700">
         {label}
         {required && (
@@ -20,8 +31,8 @@ const TextArea = ({ label, required, placeholder }: Props) => {
         placeholder={placeholder}
         required={required}
         className="w-full border border-slate-400 rounded-md p-4 text-lg text-slate-700"
+        {...props}
       />
-      ;
     </Field>
   );
 };

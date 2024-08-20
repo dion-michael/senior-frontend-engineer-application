@@ -1,20 +1,28 @@
+interface IOption {
+  label: string;
+  value: string | number;
+  id: string;
+}
+
 interface IQuestion {
-  id: uuid;
+  id: string;
   question_type: 'text' | 'textarea' | 'radio' | 'checkbox' | 'date';
   label: string;
   placeholder?: string;
   required?: boolean;
-  options?: string[];
+  options?: IOption[];
 }
 
+type IQuestionKey = keyof IQuestion;
+
 interface ISection {
-  id: uuid;
+  id: string;
   section_name: string;
   questions: IQuestion[];
 }
 
 interface IForm {
-  id: uuid;
+  id: string;
   form_name: string;
   description?: string;
   sections: ISection[];

@@ -46,6 +46,50 @@ export const getAllForms: (
   return { data, pageCount };
 };
 
+export const getFormById: (id: string) => Promise<IForm> = async (id) => {
+  const response = await fetch(`http://localhost:3000/forms/${id}`).then(
+    (res) => res.json()
+  );
+  return response;
+};
+
+export const createForm: (form: IForm) => Promise<IForm> = async (form) => {
+  const response = await fetch(`http://localhost:3000/forms`, {
+    method: 'POST',
+    body: JSON.stringify(form),
+    headers: {
+      'Content-Type': 'application/json'
+    }
+  }).then((res) => res.json());
+  invalidateCache();
+  return response;
+};
+
+export const updateForm: (form: IForm) => Promise<IForm> = async (form) => {
+  const response = await fetch(`http://localhost:3000/forms/${form.id}`, {
+    method: 'PATCH',
+    headers: {
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify(form)
+  }).then((res) => res.json());
+  invalidateCache();
+  return response;
+};
+
+export const deleteForm: (formId: string) => Promise<IForm> = async (
+  formId
+) => {
+  const response = await fetch(`http://localhost:3000/forms/${formId}`, {
+    method: 'DELETE',
+    headers: {
+      'Content-Type': 'application/json'
+    }
+  }).then((res) => res.json());
+  invalidateCache();
+  return response;
+};
+
 const readFromCache = (key: string) => {
   const cache = JSON.parse(localStorage.getItem('forms') || '{}');
   if (cache[key] && cache[key].data.length) {
@@ -63,10 +107,14 @@ const writeToCache = (
   localStorage.setItem('forms', JSON.stringify(cache));
 };
 
-const invalidateCache = (key: string) => {
-  const cache = JSON.parse(localStorage.getItem('forms') || '{}');
-  delete cache[key];
-  localStorage.setItem('forms', JSON.stringify(cache));
+const invalidateCache = (key?: string) => {
+  if (key) {
+    const cache = JSON.parse(localStorage.getItem('forms') || '{}');
+    delete cache[key];
+    localStorage.setItem('forms', JSON.stringify(cache));
+  } else {
+    localStorage.removeItem('forms');
+  }
 };
 
 const serialize = (obj: GenericObject) =>

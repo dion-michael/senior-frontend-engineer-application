@@ -1,6 +1,7 @@
 import { useCallback, useEffect, useState } from 'react';
-import { getAllForms } from '../api/forms';
+import { createForm, getAllForms } from '../api/forms';
 import useDebounce from './useDebounce';
+import getRandomId from '../utils/getRandomId';
 
 interface IUseForm {
   loading: boolean;
@@ -13,6 +14,7 @@ interface IUseForm {
   page: number;
   limit: number;
   pageCount: number;
+  addForm: () => Promise<IForm>;
 }
 
 export const useFormsData: (params: GetAllFormsParams) => IUseForm = ({
@@ -49,6 +51,21 @@ export const useFormsData: (params: GetAllFormsParams) => IUseForm = ({
     }
   }, [currentPage, currentLimit, sorting, debouncedQuery]);
 
+  const addForm = useCallback(async () => {
+    const date = new Date().toISOString();
+    const formToAdd: IForm = {
+      id: getRandomId(),
+      created_at: date,
+      form_name: '',
+      sections: [],
+      updated_at: date,
+      description: ''
+    };
+    const response = await createForm(formToAdd);
+    await fetchData();
+    return response;
+  }, [fetchData]);
+
   const nextPage = () => setPage((page) => page + 1);
   const prevPage = () => setPage((page) => (page > 1 ? page - 1 : 1));
 
@@ -62,6 +79,7 @@ export const useFormsData: (params: GetAllFormsParams) => IUseForm = ({
     data: data.data,
     error,
     fetchData,
+    addForm,
     nextPage,
     prevPage,
     setLimit,

@@ -30,4 +30,10 @@
   .section-title {
     @apply text-2xl text-slate-700 font-bold block italic mb-2;
   }
+  .paper-size {
+    @apply w-full sm:w-4/5 lg:w-4/6;
+  }
+  .btn-disabled {
+    @apply bg-gray-200 text-gray-400 hover:bg-gray-200 active:bg-gray-200 !important;
+  }
 }

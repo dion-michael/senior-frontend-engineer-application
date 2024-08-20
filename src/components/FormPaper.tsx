@@ -1,9 +1,16 @@
-import React, { PropsWithChildren } from 'react';
+import React from 'react';
 
-const FormPaper: React.FC<PropsWithChildren> = ({ children }) => {
+const FormPaper: React.FC<
+  React.DetailedHTMLProps<React.HTMLAttributes<HTMLDivElement>, HTMLDivElement>
+> = ({ children, ...props }) => {
   return (
     <div className="flex w-full items-center justify-center">
-      <div className="bg-white border w-full sm:w-4/5 lg:w-4/6 p-12 rounded-lg">
+      <div
+        {...props}
+        className={
+          'bg-white border paper-size p-12 rounded-lg ' + props.className
+        }
+      >
         {children}
       </div>
     </div>

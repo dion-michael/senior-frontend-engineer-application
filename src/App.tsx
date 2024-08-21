@@ -21,15 +21,24 @@ import AppBanner from './components/AppBanner';
 import FullscreenDialog from './components/FullscreenDialog';
 import AnamnesisForm from './components/AnamnesisForm';
 import Add from './components/icons/Add';
+import AnamnesisEditForm from './components/AnamnesisEditForm';
+import generateNewForm from './utils/generateNewForm';
+import { createForm, deleteForm } from './api/forms';
 
 const columnHelper = createColumnHelper<IForm>();
 
 function App() {
   const [selected, setSelected] = useState<IForm | null>(null);
   const [open, setOpen] = useState(false);
-  const [sorting, setSorting] = useState<SortingState>([]);
+  const [sorting, setSorting] = useState<SortingState>([
+    {
+      desc: true,
+      id: 'updated_at'
+    }
+  ]);
   const [query, setQuery] = useState('');
   const [editing, setIsEditing] = useState(false);
+  const [isNew, setIsNew] = useState(false);
 
   const {
     data,
@@ -39,8 +48,8 @@ function App() {
     prevPage,
     page,
     limit,
-    pageCount,
-    addForm
+    pageCount
+    // addForm
   } = useFormsData({ page: 1, limit: 5, sorting, query });
 
   const openDetail = (form: IForm) => {
@@ -49,7 +58,6 @@ function App() {
   };
 
   const onClose = () => {
-    // setSelected(null);
     setOpen(false);
   };
 
@@ -154,15 +162,26 @@ function App() {
   const closeDialogAndRefetch = useCallback(() => {
     fetchData();
     setOpen(false);
+    setIsNew(false);
     setIsEditing(false);
   }, [fetchData]);
 
-  const handleAddForm = useCallback(async () => {
-    const response = await addForm();
-    setSelected(response);
-    setIsEditing(true);
+  const onSaved = useCallback(async (form: IForm) => {
+    const newForm = await createForm(form);
+    setSelected(newForm);
     setOpen(true);
-  }, [addForm]);
+    setIsEditing(false);
+    setIsNew(false);
+    // closeDialogAndRefetch();
+  }, []);
+
+  const onDeleted = useCallback(
+    async (form: IForm) => {
+      await deleteForm(form.id);
+      closeDialogAndRefetch();
+    },
+    [closeDialogAndRefetch]
+  );
 
   return (
     <div className="mx-auto">
@@ -191,7 +210,7 @@ function App() {
         />
         <div className="mt-5 flex justify-end">
           <Button
-            onClick={handleAddForm}
+            onClick={() => setIsNew(true)}
             className="flex items-center text-lg bg-blue-500 hover:bg-blue-700 active:bg-blue-800 p-4 text-white rounded-lg"
           >
             <Add className="mr-2" /> {'Add Form'}
@@ -205,6 +224,18 @@ function App() {
           onEditChange={setIsEditing}
           onSaved={closeDialogAndRefetch}
           onDeleted={closeDialogAndRefetch}
+        />
+      </FullscreenDialog>
+      <FullscreenDialog
+        onClose={() => setIsNew(false)}
+        open={isNew}
+        title={'Form Preview'}
+      >
+        <AnamnesisEditForm
+          form={generateNewForm()}
+          onDeleted={onDeleted}
+          onSaved={onSaved}
+          onCancel={() => setIsNew(false)}
         />
       </FullscreenDialog>
     </div>

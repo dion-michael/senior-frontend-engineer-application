@@ -27,12 +27,12 @@
               "id": "question_003",
               "question_type": "radio",
               "label": "Gender",
+              "required": true,
               "options": [
-                { "id": "option_001", "label": "Male", "value": "male" },
-                { "id": "option_002", "label": "Female", "value": "female" },
-                { "id": "option_003", "label": "Other", "value": "other" }
-              ],
-              "required": true
+                { "id": "opt_001", "label": "Male", "value": "male" },
+                { "id": "opt_002", "label": "Female", "value": "female" },
+                { "id": "opt_003", "label": "Other", "value": "other" }
+              ]
             }
           ]
         },
@@ -45,29 +45,18 @@
               "question_type": "checkbox",
               "label": "Chronic Diseases",
               "options": [
+                { "id": "opt_004", "label": "Diabetes", "value": "diabetes" },
                 {
-                  "id": "option_004",
-                  "label": "Diabetes",
-                  "value": "diabetes"
-                },
-                {
-                  "id": "option_005",
+                  "id": "opt_005",
                   "label": "Hypertension",
                   "value": "hypertension"
                 },
                 {
-                  "id": "option_006",
+                  "id": "opt_006",
                   "label": "Heart Disease",
                   "value": "heart_disease"
-                },
-                { "id": "option_007", "label": "None", "value": "none" }
+                }
               ]
-            },
-            {
-              "id": "question_005",
-              "question_type": "textarea",
-              "label": "Past Surgeries",
-              "placeholder": "Describe any past surgeries"
             }
           ]
         }
@@ -78,43 +67,31 @@
     {
       "id": "form_002",
       "form_name": "Lifestyle and Habits",
-      "description": "Gathers information on patient lifestyle habits.",
+      "description": "Assess patient lifestyle and habits.",
       "sections": [
         {
           "id": "section_003",
-          "section_name": "Smoking and Alcohol Use",
+          "section_name": "Smoking and Alcohol",
           "questions": [
+            {
+              "id": "question_005",
+              "question_type": "radio",
+              "label": "Do you smoke?",
+              "required": true,
+              "options": [
+                { "id": "opt_007", "label": "Yes", "value": "yes" },
+                { "id": "opt_008", "label": "No", "value": "no" }
+              ]
+            },
             {
               "id": "question_006",
               "question_type": "radio",
-              "label": "Do you smoke?",
-              "options": [
-                { "id": "option_008", "label": "Yes", "value": "yes" },
-                { "id": "option_009", "label": "No", "value": "no" }
-              ],
-              "required": true
-            },
-            {
-              "id": "question_007",
-              "question_type": "radio",
               "label": "Do you consume alcohol?",
+              "required": true,
               "options": [
-                { "id": "option_010", "label": "Yes", "value": "yes" },
-                { "id": "option_011", "label": "No", "value": "no" }
-              ],
-              "required": true
-            }
-          ]
-        },
-        {
-          "id": "section_004",
-          "section_name": "Exercise",
-          "questions": [
-            {
-              "id": "question_008",
-              "question_type": "textarea",
-              "label": "Exercise Routine",
-              "placeholder": "Describe your exercise routine"
+                { "id": "opt_009", "label": "Yes", "value": "yes" },
+                { "id": "opt_010", "label": "No", "value": "no" }
+              ]
             }
           ]
         }
@@ -124,37 +101,29 @@
     },
     {
       "id": "form_003",
-      "form_name": "Dietary Habits",
-      "description": "Collects information on dietary habits and preferences.",
+      "form_name": "Dietary Assessment",
+      "description": "Information on patient dietary habits.",
       "sections": [
         {
-          "id": "section_005",
-          "section_name": "Dietary Preferences",
+          "id": "section_004",
+          "section_name": "Dietary Habits",
           "questions": [
             {
-              "id": "question_009",
-              "question_type": "checkbox",
-              "label": "Dietary Restrictions",
-              "options": [
-                {
-                  "id": "option_012",
-                  "label": "Vegetarian",
-                  "value": "vegetarian"
-                },
-                { "id": "option_013", "label": "Vegan", "value": "vegan" },
-                {
-                  "id": "option_014",
-                  "label": "Gluten-Free",
-                  "value": "gluten_free"
-                },
-                { "id": "option_015", "label": "None", "value": "none" }
-              ]
+              "id": "question_007",
+              "question_type": "textarea",
+              "label": "Describe your diet",
+              "placeholder": "Describe your typical daily diet",
+              "required": false
             },
             {
-              "id": "question_010",
-              "question_type": "textarea",
-              "label": "Describe any allergies",
-              "placeholder": "List any food allergies you have"
+              "id": "question_008",
+              "question_type": "checkbox",
+              "label": "Food Allergies",
+              "options": [
+                { "id": "opt_011", "label": "Gluten", "value": "gluten" },
+                { "id": "opt_012", "label": "Peanuts", "value": "peanuts" },
+                { "id": "opt_013", "label": "Dairy", "value": "dairy" }
+              ]
             }
           ]
         }
@@ -165,40 +134,25 @@
     {
       "id": "form_004",
       "form_name": "Family Medical History",
-      "description": "Captures medical history of close family members.",
+      "description": "Collects family medical history.",
       "sections": [
         {
-          "id": "section_006",
-          "section_name": "Family Medical History",
+          "id": "section_005",
+          "section_name": "Family Medical Conditions",
           "questions": [
             {
-              "id": "question_011",
-              "question_type": "checkbox",
-              "label": "Family History of Diseases",
-              "options": [
-                {
-                  "id": "option_016",
-                  "label": "Diabetes",
-                  "value": "diabetes"
-                },
-                {
-                  "id": "option_017",
-                  "label": "Hypertension",
-                  "value": "hypertension"
-                },
-                {
-                  "id": "option_018",
-                  "label": "Heart Disease",
-                  "value": "heart_disease"
-                },
-                { "id": "option_019", "label": "Cancer", "value": "cancer" }
-              ]
+              "id": "question_009",
+              "question_type": "text",
+              "label": "Family Member",
+              "placeholder": "Enter the family member's relation (e.g., mother, father)",
+              "required": true
             },
             {
-              "id": "question_012",
+              "id": "question_010",
               "question_type": "textarea",
-              "label": "Details",
-              "placeholder": "Provide any additional details"
+              "label": "Medical Conditions",
+              "placeholder": "Describe any known medical conditions",
+              "required": false
             }
           ]
         }
@@ -208,38 +162,133 @@
     },
     {
       "id": "form_005",
+      "form_name": "Physical Activity",
+      "description": "Assess patient physical activity levels.",
+      "sections": [
+        {
+          "id": "section_006",
+          "section_name": "Exercise Routine",
+          "questions": [
+            {
+              "id": "question_011",
+              "question_type": "radio",
+              "label": "Do you exercise regularly?",
+              "required": true,
+              "options": [
+                { "id": "opt_014", "label": "Yes", "value": "yes" },
+                { "id": "opt_015", "label": "No", "value": "no" }
+              ]
+            },
+            {
+              "id": "question_012",
+              "question_type": "textarea",
+              "label": "Describe your exercise routine",
+              "placeholder": "Describe the type and frequency of exercise",
+              "required": false
+            }
+          ]
+        }
+      ],
+      "created_at": "2024-08-14",
+      "updated_at": "2024-08-14"
+    },
+    {
+      "id": "form_006",
       "form_name": "Mental Health Assessment",
-      "description": "Assesses the mental health of the patient.",
+      "description": "Information on patient's mental health.",
       "sections": [
         {
           "id": "section_007",
-          "section_name": "Mental Health",
+          "section_name": "Mental Wellbeing",
           "questions": [
             {
               "id": "question_013",
               "question_type": "radio",
-              "label": "Do you often feel anxious or stressed?",
+              "label": "Do you feel stressed often?",
+              "required": true,
               "options": [
-                { "id": "option_020", "label": "Yes", "value": "yes" },
-                { "id": "option_021", "label": "No", "value": "no" }
-              ],
-              "required": true
+                { "id": "opt_016", "label": "Yes", "value": "yes" },
+                { "id": "opt_017", "label": "No", "value": "no" }
+              ]
             },
             {
               "id": "question_014",
-              "question_type": "radio",
-              "label": "Have you ever been diagnosed with a mental health condition?",
-              "options": [
-                { "id": "option_022", "label": "Yes", "value": "yes" },
-                { "id": "option_023", "label": "No", "value": "no" }
-              ],
+              "question_type": "textarea",
+              "label": "Describe your stress levels",
+              "placeholder": "Describe when you feel most stressed and how you manage it",
+              "required": false
+            }
+          ]
+        }
+      ],
+      "created_at": "2024-08-14",
+      "updated_at": "2024-08-14"
+    },
+    {
+      "id": "form_007",
+      "form_name": "Travel History",
+      "description": "Collects information about recent travel history.",
+      "sections": [
+        {
+          "id": "section_008",
+          "section_name": "Recent Travel",
+          "questions": [
+            {
+              "id": "question_015",
+              "question_type": "date",
+              "label": "Date of Last Travel",
+              "placeholder": "Select the date of your last travel",
               "required": true
             },
             {
-              "id": "question_015",
+              "id": "question_016",
+              "question_type": "text",
+              "label": "Destination",
+              "placeholder": "Enter the destination of your last travel",
+              "required": true
+            },
+            {
+              "id": "question_017",
               "question_type": "textarea",
-              "label": "Additional Comments",
-              "placeholder": "Provide any additional comments or concerns"
+              "label": "Health Issues",
+              "placeholder": "Describe any health issues experienced during or after travel",
+              "required": false
+            }
+          ]
+        }
+      ],
+      "created_at": "2024-08-14",
+      "updated_at": "2024-08-14"
+    },
+    {
+      "id": "form_008",
+      "form_name": "Medication History",
+      "description": "Collects information on current and past medications.",
+      "sections": [
+        {
+          "id": "section_009",
+          "section_name": "Current Medications",
+          "questions": [
+            {
+              "id": "question_018",
+              "question_type": "text",
+              "label": "Medication Name",
+              "placeholder": "Enter the name of the medication",
+              "required": true
+            },
+            {
+              "id": "question_019",
+              "question_type": "text",
+              "label": "Dosage",
+              "placeholder": "Enter the dosage of the medication",
+              "required": true
+            },
+            {
+              "id": "question_020",
+              "question_type": "date",
+              "label": "Start Date",
+              "placeholder": "Select the start date of the medication",
+              "required": true
             }
           ]
         }

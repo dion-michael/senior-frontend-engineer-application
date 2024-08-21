@@ -8,6 +8,7 @@ import Button from './Button';
 import AnamnesisEditForm from './AnamnesisEditForm';
 import { Suspense, useCallback, useEffect } from 'react';
 import useAnamnesisForm from '../hooks/useAnamnesisForm';
+import { deleteForm, updateForm } from '../api/forms';
 
 type Props = {
   formId?: string;
@@ -24,20 +25,29 @@ const AnamnesisForm = ({
   onSaved,
   onDeleted
 }: Props) => {
-  console.log({ edit });
-  const { form } = useAnamnesisForm(formId);
+  const { form, refetch } = useAnamnesisForm(formId);
 
   useEffect(() => {
     return () => onEditChange(false);
   }, [onEditChange]);
 
-  const handleOnSaved = useCallback(() => {
-    onSaved();
-  }, [onSaved]);
+  const handleOnSaved = useCallback(
+    async (form: IForm) => {
+      form.updated_at = new Date().toISOString();
+      await updateForm(form);
+      refetch();
+      onSaved();
+    },
+    [onSaved, refetch]
+  );
 
-  const handleOnDeleted = useCallback(() => {
-    onDeleted();
-  }, [onDeleted]);
+  const handleOnDeleted = useCallback(
+    async (form: IForm) => {
+      await deleteForm(form.id);
+      onDeleted();
+    },
+    [onDeleted]
+  );
 
   return (
     <Suspense fallback={<span>loading...</span>}>
@@ -53,10 +63,10 @@ const AnamnesisForm = ({
       )}
       {edit ? (
         <AnamnesisEditForm
-          formId={form?.id as string}
           onCancel={() => onEditChange(false)}
           onSaved={handleOnSaved}
           onDeleted={handleOnDeleted}
+          form={form}
         />
       ) : (
         <FormPaper>

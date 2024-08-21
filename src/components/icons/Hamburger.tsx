@@ -1,22 +1,22 @@
 import React from 'react';
 
-const Save = (props: React.SVGProps<SVGSVGElement>) => {
+const Hamburger = (props: React.SVGProps<SVGSVGElement>) => {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
       fill="none"
       viewBox="0 0 24 24"
-      strokeWidth="1.5"
+      strokeWidth={1.5}
       stroke="currentColor"
-      className={props.className || 'size-6'}
+      className={props.className + ' size-6'}
     >
       <path
         strokeLinecap="round"
         strokeLinejoin="round"
-        d="M3 3v18h18V6l-3-3H3ZM7.5 3v6h9V3M6 21v-9h12v9M14.25 5.25v1.5"
+        d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5"
       />
     </svg>
   );
 };
 
-export default Save;
+export default Hamburger;

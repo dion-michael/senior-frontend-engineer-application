@@ -21,7 +21,7 @@ const Input = ({
   ...props
 }: Props) => {
   return (
-    <Field {...containerProps} className={`mb-5 ${containerProps?.className}`}>
+    <Field {...containerProps} className={`${containerProps?.className}`}>
       <Label className="text-lg text-slate-700">
         {label}{' '}
         {required && (
